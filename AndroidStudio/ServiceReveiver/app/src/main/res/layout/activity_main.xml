@@ -17,7 +17,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tV_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HSLU Mobile Programming"
@@ -26,20 +26,23 @@
                 tools:layout_editor_absoluteY="16dp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tV_Desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/tV_Title"
                 tools:layout_editor_absoluteX="16dp" />
 
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/tV_TitelMP"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_marginTop="20dp"
+                android:background="#2FB41E"
                 android:text="Music Player Service"
+                android:textColor="#000000"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="72dp" />
 
@@ -49,14 +52,14 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btn_StartMP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Musicplayer starten" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btn_StopMP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -64,7 +67,7 @@
             </LinearLayout>
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/cB_Service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mit Service verbunden" />
@@ -75,14 +78,14 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btn_Next"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Nächstes Stück" />
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/btn_History"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -90,31 +93,34 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tV_TitelBcR"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Broadcast Receiver" />
+                android:layout_height="30dp"
+                android:background="#2FB41E"
+                android:text="Broadcast Receiver"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/cB_Broadcast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Kein Broadcast registriert" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/tV_MessageBc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nachricht vom Broadcast receiver:" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/tV_BcDeaktiv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Broadcast deaktiviert!!!!!" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/btn_SendBc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Broadcast verschicken" />
