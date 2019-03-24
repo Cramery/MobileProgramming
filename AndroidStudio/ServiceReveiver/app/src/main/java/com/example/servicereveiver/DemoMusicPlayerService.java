@@ -3,10 +3,13 @@ package com.example.servicereveiver;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.view.View;
+
+import javax.security.auth.Destroyable;
 
 public class DemoMusicPlayerService extends Service{
 
-    @androidx.annotation.Nullable
+    //@androidx.annotation.Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -25,5 +28,10 @@ public class DemoMusicPlayerService extends Service{
     }
 
     @Override
+    public void onDestroy(){
+        stopPlayThread();
+        stopForeground(true);
+    }
+
 
 }
