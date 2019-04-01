@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/label_modul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_modul"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+            <TextView
+                android:id="@+id/label_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_description" />
+
+            <TextView
+                android:id="@+id/label_intents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_intents"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <Button
+                android:id="@+id/button_browserStarten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="startBrowser"
+                android:text="@string/button_browserStarten" />
+
+            <Button
+                android:id="@+id/button_browserAbfragen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="browserAbfragen"
+                android:text="@string/button_browserAbfragen" />
+
+            <Button
+                android:id="@+id/button_actionStarten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="startCustomIntentOnClick"
+                android:text="@string/button_actionStarten" />
+
+            <TextView
+                android:id="@+id/show_intentText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/label_widgets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_widgets"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <EditText
+                android:id="@+id/input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/button_updateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_updateWidget" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

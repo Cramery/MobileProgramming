@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Intent &amp; Widgets 2</string>
+    <string name="title_activity_my_browser">MyBrowserActivity</string>
+
+    <string name="label_modul">HSLU MOBPRO</string>
+    <string name="label_description">In dieser Übung geht es um das verwenden von Intents und App-Widgets.</string>
+    <string name="label_intents">Intents</string>
+    <string name="label_widgets">App-Widgets</string>
+
+    <string name="button_browserStarten">Browser Intent starten</string>
+    <string name="button_browserAbfragen">Browser Intent abfragen</string>
+    <string name="button_actionStarten">Intent mit eigener Action starten</string>
+    <string name="button_updateWidget">Widget-Text updaten</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+</resources>
