@@ -10,13 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ShoppingFragment extends Fragment {
+public class ShoppingFragment extends Fragment implements View.OnClickListener {
 
     String[] names = {"Butter", "Milch", "Apfel", "Glacee"};
-    String[] amounts = {"200g", "1l", "10", "Alles"};
 
     @Nullable
     @Override
@@ -32,6 +33,19 @@ public class ShoppingFragment extends Fragment {
         ShoppingFragment.CustomAdapter customerAdatpter = new ShoppingFragment.CustomAdapter();
         listView.setAdapter(customerAdatpter);
 
+        Button b = (Button) view.findViewById(R.id.btn_Add);
+        b.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_Add:
+                EditText eT_ingredient = (EditText) getView().findViewById(R.id.eT_NameIngredient);
+                String ingredient = eT_ingredient.getText().toString();
+                
+                break;
+        }
     }
 
     class CustomAdapter extends BaseAdapter {
@@ -56,10 +70,8 @@ public class ShoppingFragment extends Fragment {
             view = getLayoutInflater().inflate(R.layout.shopping_listlayout, null);
 
             TextView tV_name = (TextView) view.findViewById(R.id.tV_Name);
-            TextView tV_description = (TextView) view.findViewById(R.id.tV_Amount);
 
             tV_name.setText(names[i]);
-            tV_description.setText(amounts[i]);
 
             return view;
         }
