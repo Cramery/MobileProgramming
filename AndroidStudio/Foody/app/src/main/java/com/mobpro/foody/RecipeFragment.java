@@ -19,7 +19,6 @@ public class RecipeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        TextView textView = (TextView) getView().findViewById(R.id.tV_home);
-        textView.setText("Heloow");
+
     }
 }

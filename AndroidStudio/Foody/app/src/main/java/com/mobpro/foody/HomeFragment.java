@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -47,7 +46,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
     }
 
     class CustomAdapter extends BaseAdapter{
@@ -69,7 +67,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.customlayout, null);
+            view = getLayoutInflater().inflate(R.layout.home_listlayout, null);
 
             TextView tV_name = (TextView) view.findViewById(R.id.tV_Title);
             TextView tV_description = (TextView) view.findViewById(R.id.tV_Description);

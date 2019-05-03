@@ -14,12 +14,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_recipe, null);
+        return inflater.inflate(R.layout.fragment_profile, null);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        TextView textView = (TextView) getView().findViewById(R.id.tV_home);
-        textView.setText("Helooewdafw");
+
     }
 }
