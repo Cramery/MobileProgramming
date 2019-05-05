@@ -16,8 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener {
-
-    String[] names = {"Butter", "Milch", "Apfel", "Glacee"};
+    //ToDo
+    //Von der Datenbank alle Einträge einer Einkaufsliste holen und nach folgendem Muster in ein Array schreiben:
+    String[] ingredients = {"20g Butter", "1l Milch", "10 Apfel", "Glacee"};
 
     @Nullable
     @Override
@@ -43,7 +44,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_Add:
                 EditText eT_ingredient = (EditText) getView().findViewById(R.id.eT_NameIngredient);
                 String ingredient = eT_ingredient.getText().toString();
-                
+
                 break;
         }
     }
@@ -52,7 +53,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
 
         @Override
         public int getCount() {
-            return names.length;
+            return ingredients.length;
         }
 
         @Override
@@ -71,7 +72,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
 
             TextView tV_name = (TextView) view.findViewById(R.id.tV_Name);
 
-            tV_name.setText(names[i]);
+            tV_name.setText(ingredients[i]);
 
             return view;
         }
