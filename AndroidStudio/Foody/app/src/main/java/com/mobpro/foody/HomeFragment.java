@@ -23,6 +23,10 @@ public class HomeFragment extends Fragment {
     List<String> names = new ArrayList<String>();
     List<String> descriptions = new ArrayList<String>();
 
+    private static final String TAG = "MainActivity";
+
+    private static final String KEY_TITLE = "title";
+    private static final String KEY_DESCRIPTION  = "description";
 
     public static final String EXTRA_MESSAGE = "com.mobpro.foody.MESSAGE";
 
