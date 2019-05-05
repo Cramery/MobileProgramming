@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,13 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +32,13 @@ public class HomeFragment extends Fragment {
     List<String> descriptions = new ArrayList<String>();
 
     private static final String TAG = "MainActivity";
-
-    private static final String KEY_TITLE = "title";
-    private static final String KEY_DESCRIPTION  = "description";
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static final String EXTRA_MESSAGE = "com.mobpro.foody.MESSAGE";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        FirebaseApp.initializeApp(getContext());
         return inflater.inflate(R.layout.fragment_home, null);
     }
 
@@ -60,13 +65,26 @@ public class HomeFragment extends Fragment {
     }
 
     public void addElements(){
-        //Get DB Reference
-        //Get Collection
-        //Get all Data from Collection
+        db.collection("Recipes").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
 
-        names.add("Spagetti");
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                names.add(document.getId());
+                                //Toast.makeText(getContext(), string1[0], Toast.LENGTH_SHORT).show();
+                            }
+                        }else
+                        {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+
+                    }
+                });
+
+        names.add("Spaghetti");
         descriptions.add("Easy");
-        names.add("Cookies");
         descriptions.add("Easy");
     }
 

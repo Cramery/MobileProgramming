@@ -26,9 +26,6 @@ public class RecipeFragment extends Fragment {
 
     private static final String TAG = "MainActivity";
 
-    private static final String KEY_TITLE = "title";
-    private static final String KEY_DESCRIPTION  = "description";
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -49,34 +46,10 @@ public class RecipeFragment extends Fragment {
                 SaveRecipe(v);
             }
         });
-
-
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("born", 1815);
-
-        db.collection("Recipes").document("Recipes").set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
     }
 
 
-
     public void SaveRecipe(View view) {
-        Log.w(TAG, "Button");
-
-        Toast.makeText(getContext(), "Button Clicked", Toast.LENGTH_LONG).show();
         EditText eT_Title = (EditText) getView().findViewById(R.id.eT_Title);
         EditText eT_Description = (EditText) getView().findViewById(R.id.eT_Description);
         EditText eT_Ingredient = (EditText) getView().findViewById(R.id.eT_Ingredients);
@@ -87,26 +60,30 @@ public class RecipeFragment extends Fragment {
         String ingredient = eT_Ingredient.getText().toString();
         String instructions = eT_Instructions.getText().toString();
 
-        Map<String, Object> recipe = new HashMap<>();
-        recipe.put("title", title);
-        recipe.put("desctiption", desctiption);
-        recipe.put("ingredient", ingredient);
-        recipe.put("instructions", instructions);
+        if (!title.isEmpty()) {
+            Map<String, Object> recipe = new HashMap<>();
+            recipe.put("title", title);
+            recipe.put("desctiption", desctiption);
+            recipe.put("ingredient", ingredient);
+            recipe.put("instructions", instructions);
 
-        db.collection("Recipes").document("Recipes").set(recipe)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(getContext(), "Succeeded", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Failed", Toast.LENGTH_LONG).show();
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
+            db.collection("Recipes").document(title).set(recipe)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getContext(), "Recipe Saved", Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), "Failed", Toast.LENGTH_LONG).show();
+                            Log.w(TAG, "Error adding document", e);
+                        }
+                    });
 
+        }else{
+            Toast.makeText(getContext(), "Pls. Enter a Title", Toast.LENGTH_LONG).show();
+        }
     }
 }
