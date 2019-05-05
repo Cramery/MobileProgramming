@@ -15,8 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener {
-    //ToDo
-    //Von der Datenbank alle Einträge einer Einkaufsliste holen und nach folgendem Muster in ein Array schreiben:
+
     String[] ingredients = {"20g Butter", "1l Milch", "10 Apfel", "Glacee"};
 
     @Nullable
@@ -27,6 +26,9 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        //ToDo
+        //Von der Datenbank alle Einträge einer Einkaufsliste holen und nach dem Muster wie im Array ingredients[] (Klassenvariabel) in einem Array abspeichern
 
         ListView listView = (ListView) getView().findViewById(R.id.ListView);
 
