@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/eT_Description" />
 
     <EditText
-        android:id="@+id/eT_Recipe"
+        android:id="@+id/eT_instructions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/eT_Ingredients" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_saveRecipe"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -92,6 +92,6 @@
         android:text="Speichern"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eT_Recipe" />
+        app:layout_constraintTop_toBottomOf="@+id/eT_instructions" />
 
 </android.support.constraint.ConstraintLayout>
