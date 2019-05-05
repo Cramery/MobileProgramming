@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "579510738731",
+    "firebase_url": "https://firestorm-90ef4.firebaseio.com",
+    "project_id": "firestorm-90ef4",
+    "storage_bucket": "firestorm-90ef4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579510738731:android:01c579bf87f2b18a",
+        "android_client_info": {
+          "package_name": "com.mobpro.firestorm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579510738731-u7da6udkki0gkqnpm9t2ej5gomn8os97.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobpro.firestorm",
+            "certificate_hash": "36b7845b93c464f77a061eac720916a29ef28e3b"
+          }
+        },
+        {
+          "client_id": "579510738731-biob8bb7ndj8eq2lfksofalrv675tbnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9KkimlxaFck5KqlH7f1Sej8I8XnLYd2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579510738731-biob8bb7ndj8eq2lfksofalrv675tbnk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
