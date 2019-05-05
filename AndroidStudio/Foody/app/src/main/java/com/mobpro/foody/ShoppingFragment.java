@@ -1,6 +1,5 @@
 package com.mobpro.foody;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,12 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener {
     //ToDo
@@ -34,19 +33,30 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
         ShoppingFragment.CustomAdapter customerAdatpter = new ShoppingFragment.CustomAdapter();
         listView.setAdapter(customerAdatpter);
 
-        Button b = (Button) view.findViewById(R.id.btn_Add);
-        b.setOnClickListener(this);
+        final Button button = (Button) getView().findViewById(R.id.btn_AddToList);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveList(v);
+            }
+        });
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_Add:
+            case R.id.btn_AddToList:
                 EditText eT_ingredient = (EditText) getView().findViewById(R.id.eT_NameIngredient);
                 String ingredient = eT_ingredient.getText().toString();
 
                 break;
         }
+    }
+
+    public void SaveList(View v){
+        Toast.makeText(getContext(), "hoi", Toast.LENGTH_LONG).show();
+        //ToDo
+        //Liste of Datebank abespeichere
     }
 
     class CustomAdapter extends BaseAdapter {
