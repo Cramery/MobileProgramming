@@ -12,12 +12,18 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
 
-    String[] names = {"Spaghetti", "Cookies", "Brownies", "Glacee"};
-    String[] descriptions = {"Easy", "Medium", "Medium", "Easy"};
+    List<String> names = new ArrayList<String>();
+    List<String> descriptions = new ArrayList<String>();
+
+
     public static final String EXTRA_MESSAGE = "com.mobpro.foody.MESSAGE";
 
     @Nullable
@@ -29,6 +35,8 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        addElements();
 
         ListView listView = (ListView) getView().findViewById(R.id.ListView);
 
@@ -45,14 +53,24 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
 
+    public void addElements(){
+        //Get DB Reference
+        //Get Collection
+        //Get all Data from Collection
+
+        names.add("Spagetti");
+        descriptions.add("Easy");
+        names.add("Cookies");
+        descriptions.add("Easy");
     }
 
     class CustomAdapter extends BaseAdapter{
 
         @Override
         public int getCount() {
-            return names.length;
+            return names.size();
         }
 
         @Override
@@ -72,8 +90,8 @@ public class HomeFragment extends Fragment {
             TextView tV_name = (TextView) view.findViewById(R.id.tV_Title);
             TextView tV_description = (TextView) view.findViewById(R.id.tV_Description);
 
-            tV_name.setText(names[i]);
-            tV_description.setText(descriptions[i]);
+            tV_name.setText(names.get(i));
+            tV_description.setText(descriptions.get(i));
 
             return view;
         }
