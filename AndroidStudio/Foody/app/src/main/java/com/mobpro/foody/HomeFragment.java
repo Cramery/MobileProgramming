@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment {
         CustomAdapter customerAdatpter = new CustomAdapter();
         listView.setAdapter(customerAdatpter);
 
+
         // Get the name of the clicked item and open Detail activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,22 +71,32 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 names.add(document.getId());
-                                //Toast.makeText(getContext(), string1[0], Toast.LENGTH_SHORT).show();
                             }
                         }else
                         {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-
+                        Toast.makeText(getContext(), "HELLO FROM ONCOMPLETE", Toast.LENGTH_SHORT).show();
+                        addToListView();
                     }
                 });
 
-        names.add("Spaghetti");
-        descriptions.add("Easy");
-        descriptions.add("Easy");
+        // This will print first, but names will be empty here (hasn't run onComplete yet)$
+        Toast.makeText(getContext(), "HELLO FROM ADDELEMENTS", Toast.LENGTH_SHORT).show();
+
+    }
+
+    void addToListView() {
+        String x = "";
+        if (names.size() != 0){
+            x = names.get(1);
+        }
+        String s = ("  names size = " + names.size());
+        Toast.makeText(getContext(), x, Toast.LENGTH_SHORT).show();
+
+        //An dieser Stelle ist die Variabel names abgefüllt (endlich, wuhu)
     }
 
     class CustomAdapter extends BaseAdapter{
@@ -114,6 +125,7 @@ public class HomeFragment extends Fragment {
 
             tV_name.setText(names.get(i));
             tV_description.setText(descriptions.get(i));
+            notifyDataSetChanged();
 
             return view;
         }
