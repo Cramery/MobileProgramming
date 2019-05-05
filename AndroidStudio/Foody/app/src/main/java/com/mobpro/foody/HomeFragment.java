@@ -24,6 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class HomeFragment extends Fragment {
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "MainActivity";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static final String EXTRA_MESSAGE = "com.mobpro.foody.MESSAGE";
+    boolean b = false;
 
     @Nullable
     @Override
@@ -44,9 +46,37 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
+        b = false;
         addElements();
+    }
 
+    public void addElements(){
+        db.collection("Recipes").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                names.add(document.getId());
+                                descriptions.add("Easy");
+                            }
+                        }else
+                        {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                        addToListView();
+                    }
+                });
+    }
+
+    void addToListView() {
+        String x = "";
+        if (names.size() != 0){
+            x = names.get(1);
+            b = true;
+        }
+
+        //An dieser Stelle ist die Variabel names abgefüllt (endlich, wuhu)
         ListView listView = (ListView) getView().findViewById(R.id.ListView);
 
         CustomAdapter customerAdatpter = new CustomAdapter();
@@ -63,40 +93,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-    }
 
-    public void addElements(){
-        db.collection("Recipes").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for (QueryDocumentSnapshot document : task.getResult()){
-                                names.add(document.getId());
-                            }
-                        }else
-                        {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                        Toast.makeText(getContext(), "HELLO FROM ONCOMPLETE", Toast.LENGTH_SHORT).show();
-                        addToListView();
-                    }
-                });
-
-        // This will print first, but names will be empty here (hasn't run onComplete yet)$
-        Toast.makeText(getContext(), "HELLO FROM ADDELEMENTS", Toast.LENGTH_SHORT).show();
-
-    }
-
-    void addToListView() {
-        String x = "";
-        if (names.size() != 0){
-            x = names.get(1);
-        }
-        String s = ("  names size = " + names.size());
-        Toast.makeText(getContext(), x, Toast.LENGTH_SHORT).show();
-
-        //An dieser Stelle ist die Variabel names abgefüllt (endlich, wuhu)
     }
 
     class CustomAdapter extends BaseAdapter{
