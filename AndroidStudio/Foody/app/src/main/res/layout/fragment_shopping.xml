@@ -26,21 +26,20 @@
 
     <EditText
         android:id="@+id/eT_NameIngredient"
-        android:layout_width="0dp"
+        android:layout_width="264dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
         android:ems="10"
         android:hint="Zutat hinzufügen"
         android:inputType="textPersonName"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@id/btn_AddToList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/eT_AmountIngredient"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ListView" />
 
@@ -59,6 +58,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eT_NameIngredient" />
+
+    <EditText
+        android:id="@+id/eT_AmountIngredient"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:hint="Menge"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btn_AddToList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/eT_NameIngredient"
+        app:layout_constraintTop_toBottomOf="@+id/ListView" />
 
 
 </android.support.constraint.ConstraintLayout>
