@@ -16,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,7 +38,7 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "MainActivity";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static final String EXTRA_MESSAGE = "com.mobpro.foody.MESSAGE";
-    boolean b = false;
+    String description = " ";
 
     @Nullable
     @Override
@@ -46,7 +49,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        b = false;
         addElements();
     }
 
@@ -58,7 +60,7 @@ public class HomeFragment extends Fragment {
                         if (task.isSuccessful()){
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 names.add(document.getId());
-                                descriptions.add("Easy");
+                                //descriptions.add("Easy");
                             }
                         }else
                         {
@@ -70,18 +72,10 @@ public class HomeFragment extends Fragment {
     }
 
     void addToListView() {
-        String x = "";
-        if (names.size() != 0){
-            x = names.get(1);
-            b = true;
-        }
-
-        //An dieser Stelle ist die Variabel names abgefüllt (endlich, wuhu)
         ListView listView = (ListView) getView().findViewById(R.id.ListView);
 
         CustomAdapter customerAdatpter = new CustomAdapter();
         listView.setAdapter(customerAdatpter);
-
 
         // Get the name of the clicked item and open Detail activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,7 +115,7 @@ public class HomeFragment extends Fragment {
             TextView tV_description = (TextView) view.findViewById(R.id.tV_Description);
 
             tV_name.setText(names.get(i));
-            tV_description.setText(descriptions.get(i));
+            //tV_description.setText(descriptions.get(i));
             notifyDataSetChanged();
 
             return view;

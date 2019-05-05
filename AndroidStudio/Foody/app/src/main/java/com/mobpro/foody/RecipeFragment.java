@@ -56,14 +56,14 @@ public class RecipeFragment extends Fragment {
         EditText eT_Instructions = (EditText) getView().findViewById(R.id.eT_instructions);
 
         String title = eT_Title.getText().toString();
-        String desctiption = eT_Description.getText().toString();
+        String description = eT_Description.getText().toString();
         String ingredient = eT_Ingredient.getText().toString();
         String instructions = eT_Instructions.getText().toString();
 
         if (!title.isEmpty()) {
             Map<String, Object> recipe = new HashMap<>();
             recipe.put("title", title);
-            recipe.put("desctiption", desctiption);
+            recipe.put("description", description);
             recipe.put("ingredient", ingredient);
             recipe.put("instructions", instructions);
 
