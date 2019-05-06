@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobpro.foody.Database.ShoppingList;
+import com.mobpro.foody.Database.ShoppingListAdapter;
 import com.mobpro.foody.Database.ShoppingListViewModel;
 
 import java.util.List;
@@ -25,33 +28,34 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
 
     private String DEFAULT_LIST = "list";
     private ShoppingListViewModel viewModel;
-
-    String[] ingredients = {"20g Butter", "1l Milch", "10 Apfel", "Glacee"};
+    private View rootView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_shopping, null);
+        rootView = inflater.inflate(R.layout.fragment_shopping, null);
+        return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+
+        final ShoppingListAdapter adapter = new ShoppingListAdapter();
+        recyclerView.setAdapter(adapter);
+
         viewModel = ViewModelProviders.of(this).get(ShoppingListViewModel.class);
-        viewModel.showList(DEFAULT_LIST).observe(this, new Observer<List<ShoppingList>>() {
+        viewModel.showAll().observe(this, new Observer<List<ShoppingList>>() {
             @Override
             public void onChanged(@Nullable List<ShoppingList> shoppingLists) {
-                
+                adapter.setItems(shoppingLists);
             }
         });
 
         //ToDo
         //Von der Datenbank alle Einträge einer Einkaufsliste holen und nach dem Muster wie im Array ingredients[] (Klassenvariabel) in einem Array abspeichern
-
-        ListView listView = (ListView) getView().findViewById(R.id.ListView);
-
-        ShoppingFragment.CustomAdapter customerAdatpter = new ShoppingFragment.CustomAdapter();
-        listView.setAdapter(customerAdatpter);
 
         final Button button = (Button) getView().findViewById(R.id.btn_AddToList);
         button.setOnClickListener(new View.OnClickListener() {
@@ -77,34 +81,5 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
         Toast.makeText(getContext(), "hoi", Toast.LENGTH_LONG).show();
         //ToDo
         //Liste of Datebank abespeichere
-    }
-
-    class CustomAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return ingredients.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.shopping_listlayout, null);
-
-            TextView tV_name = (TextView) view.findViewById(R.id.tV_Name);
-
-            tV_name.setText(ingredients[i]);
-
-            return view;
-        }
     }
 }

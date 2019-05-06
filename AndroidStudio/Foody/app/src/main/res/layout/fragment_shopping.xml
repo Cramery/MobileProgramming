@@ -6,23 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/ListView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/eT_NameIngredient"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:listitem="@layout/list_item" />
 
     <EditText
         android:id="@+id/eT_NameIngredient"
@@ -41,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_AddToList"
         app:layout_constraintEnd_toStartOf="@+id/eT_AmountIngredient"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListView" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
 
     <Button
         android:id="@+id/btn_AddToList"
@@ -75,7 +71,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_AddToList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/eT_NameIngredient"
-        app:layout_constraintTop_toBottomOf="@+id/ListView" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
 
 
 </android.support.constraint.ConstraintLayout>
