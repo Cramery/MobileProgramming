@@ -1,5 +1,7 @@
 package com.mobpro.foody;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +16,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mobpro.foody.Database.ShoppingList;
+import com.mobpro.foody.Database.ShoppingListViewModel;
+
+import java.util.List;
+
 public class ShoppingFragment extends Fragment implements View.OnClickListener {
+
+    private String DEFAULT_LIST = "list";
+    private ShoppingListViewModel viewModel;
 
     String[] ingredients = {"20g Butter", "1l Milch", "10 Apfel", "Glacee"};
 
@@ -26,6 +36,14 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        viewModel = ViewModelProviders.of(this).get(ShoppingListViewModel.class);
+        viewModel.showList(DEFAULT_LIST).observe(this, new Observer<List<ShoppingList>>() {
+            @Override
+            public void onChanged(@Nullable List<ShoppingList> shoppingLists) {
+                
+            }
+        });
 
         //ToDo
         //Von der Datenbank alle Einträge einer Einkaufsliste holen und nach dem Muster wie im Array ingredients[] (Klassenvariabel) in einem Array abspeichern
