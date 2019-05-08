@@ -20,6 +20,8 @@ public class Details extends AppCompatActivity {
 
     private TextView tV_Title;
     private TextView tV_Desc;
+    private TextView tV_DIngredients;
+    private TextView tV_DInstructions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,9 @@ public class Details extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         tV_Title  = findViewById(R.id.tV_DTitle);
-        tV_Desc  = findViewById(R.id.tV_DDesc);
+        tV_Desc  = findViewById(R.id.tV_Description);
+        tV_DIngredients  = findViewById(R.id.tV_DIngredients);
+        tV_DInstructions  = findViewById(R.id.tV_DInstructions);
 
         loadNote(message);
     }
@@ -45,8 +49,12 @@ public class Details extends AppCompatActivity {
                         if (documentSnapshot.exists()){
                             String title = documentSnapshot.getString("title");
                             String description = documentSnapshot.getString("description");
+                            String ingredients = documentSnapshot.getString("ingredients");
+                            String instructions = documentSnapshot.getString("instructions");
                             tV_Title.setText(title);
                             tV_Desc.setText(description);
+                            tV_DIngredients.setText(ingredients);
+                            tV_DInstructions.setText(instructions);
                         }else{
                             Toast.makeText(Details.this, "Document does not exist", Toast.LENGTH_SHORT).show();
                         }
