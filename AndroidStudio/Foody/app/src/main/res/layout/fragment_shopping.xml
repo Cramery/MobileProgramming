@@ -9,9 +9,11 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
 
 
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/eT_NameIngredient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +24,7 @@
 
     <EditText
         android:id="@+id/eT_NameIngredient"
-        android:layout_width="264dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
