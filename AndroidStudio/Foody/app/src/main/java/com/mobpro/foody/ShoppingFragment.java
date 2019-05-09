@@ -24,7 +24,7 @@ import com.mobpro.foody.Database.ShoppingListViewModel;
 
 import java.util.List;
 
-public class ShoppingFragment extends Fragment implements View.OnClickListener {
+public class ShoppingFragment extends Fragment {
 
     private String DEFAULT_LIST = "list";
     private ShoppingListViewModel viewModel;
@@ -47,7 +47,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
         recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this).get(ShoppingListViewModel.class);
-        viewModel.showAll().observe(this, new Observer<List<ShoppingList>>() {
+        viewModel.showList(DEFAULT_LIST).observe(this, new Observer<List<ShoppingList>>() {
             @Override
             public void onChanged(@Nullable List<ShoppingList> shoppingLists) {
                 adapter.setItems(shoppingLists);
@@ -66,20 +66,11 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_AddToList:
-                EditText eT_ingredient = (EditText) getView().findViewById(R.id.eT_NameIngredient);
-                String ingredient = eT_ingredient.getText().toString();
-
-                break;
-        }
-    }
-
     public void SaveList(View v){
-        Toast.makeText(getContext(), "hoi", Toast.LENGTH_LONG).show();
-        //ToDo
-        //Liste of Datebank abespeichere
+        EditText eT_ingredient = (EditText) getView().findViewById(R.id.eT_NameIngredient);
+        String ingredient = eT_ingredient.getText().toString();
+        EditText eT_amount = (EditText) getView().findViewById(R.id.eT_AmountIngredient);
+        String amount = eT_amount.getText().toString();
+        viewModel.insert(new ShoppingList(DEFAULT_LIST, ingredient, amount,0));
     }
 }
