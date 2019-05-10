@@ -57,9 +57,6 @@ public class ShoppingFragment extends Fragment {
             }
         });
 
-        //ToDo
-        //Von der Datenbank alle Einträge einer Einkaufsliste holen und nach dem Muster wie im Array ingredients[] (Klassenvariabel) in einem Array abspeichern
-
         final Button button = (Button) getView().findViewById(R.id.btn_AddToList);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
