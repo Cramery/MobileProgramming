@@ -34,7 +34,7 @@ public class Details extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         tV_Title  = findViewById(R.id.tV_DTitle);
-        tV_Desc  = findViewById(R.id.tV_Description);
+        tV_Desc  = findViewById(R.id.tV_DDescription);
         tV_DIngredients  = findViewById(R.id.tV_DIngredients);
         tV_DInstructions  = findViewById(R.id.tV_DInstructions);
 
@@ -49,7 +49,7 @@ public class Details extends AppCompatActivity {
                         if (documentSnapshot.exists()){
                             String title = documentSnapshot.getString("title");
                             String description = documentSnapshot.getString("description");
-                            String ingredients = documentSnapshot.getString("ingredients");
+                            String ingredients = documentSnapshot.getString("ingredient");
                             String instructions = documentSnapshot.getString("instructions");
                             tV_Title.setText(title);
                             tV_Desc.setText(description);
