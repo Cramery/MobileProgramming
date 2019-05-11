@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +67,11 @@ public class Details extends AppCompatActivity {
                         Toast.makeText(Details.this, "Error", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void backHome(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }
