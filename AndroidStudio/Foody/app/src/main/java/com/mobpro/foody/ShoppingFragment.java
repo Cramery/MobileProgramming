@@ -2,9 +2,13 @@ package com.mobpro.foody;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,6 +30,7 @@ import com.mobpro.foody.Database.ShoppingList;
 import com.mobpro.foody.Database.ShoppingListAdapter;
 import com.mobpro.foody.Database.ShoppingListViewModel;
 import com.mobpro.foody.ShoppingService.ShoppingService;
+import com.mobpro.foody.ShoppingService.ShoppingServiceApi;
 
 import java.util.List;
 
@@ -35,10 +40,15 @@ public class ShoppingFragment extends Fragment {
     private ShoppingListViewModel viewModel;
     private View rootView;
 
+    private ShoppingService myService;
+    private boolean isBound;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_shopping, null);
+        Intent intent = new Intent(this.getActivity(), ShoppingService.class);
+        this.getActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
         return rootView;
     }
 
@@ -67,11 +77,35 @@ public class ShoppingFragment extends Fragment {
             }
         });
 
-        final Button button_start = (Button) getView().findViewById(R.id.start_service);
+        final Button button_start = (Button) getView().findViewById(R.id.btn_start_service);
         button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 start_service();
+            }
+        });
+
+        final Button button_stop = (Button) getView().findViewById(R.id.btn_stop_service);
+        button_stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stop_service();
+            }
+        });
+
+        final Button button_previous = (Button) getView().findViewById(R.id.btn_previous_item);
+        button_previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPreviousItem();
+            }
+        });
+
+        final Button button_next = (Button) getView().findViewById(R.id.btn_next_item);
+        button_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNextItem();
             }
         });
     }
@@ -88,4 +122,30 @@ public class ShoppingFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), ShoppingService.class);
         this.getActivity().startService(intent);
     }
+
+    public void stop_service(){
+        myService.stopShopping();
+    }
+
+    public void showNextItem(){
+        myService.showNextItem();
+    }
+
+    public void showPreviousItem(){
+        myService.showPreviousItem();
+    }
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            ShoppingService.LocalBinder binder = (ShoppingService.LocalBinder) service;
+            myService = binder.getService();
+            isBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            isBound = false;
+        }
+    };
 }
