@@ -32,6 +32,7 @@ import com.mobpro.foody.Database.ShoppingListViewModel;
 import com.mobpro.foody.ShoppingService.ShoppingService;
 import com.mobpro.foody.ShoppingService.ShoppingServiceApi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingFragment extends Fragment {
@@ -39,6 +40,9 @@ public class ShoppingFragment extends Fragment {
     private String DEFAULT_LIST = "list";
     private ShoppingListViewModel viewModel;
     private View rootView;
+
+    private int itemCount;
+    private List<ShoppingList> shoppingItems;
 
     private ShoppingService myService;
     private boolean isBound;
@@ -66,6 +70,8 @@ public class ShoppingFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<ShoppingList> shoppingLists) {
                 adapter.setItems(shoppingLists);
+                itemCount = adapter.getItemCount();
+                shoppingItems = shoppingLists;
             }
         });
 
@@ -119,7 +125,15 @@ public class ShoppingFragment extends Fragment {
     }
 
     public void start_service(){
+        List<String> shoppingListItems = new ArrayList<>();
+        for(int i = 0; i < itemCount; i++){
+            ShoppingList item = shoppingItems.get(i);
+            shoppingListItems.add(item.getMenge()+ " " + item.getProductName());
+        }
+
         Intent intent = new Intent(this.getActivity(), ShoppingService.class);
+        intent.putExtra("itemCount", itemCount);
+        intent.putStringArrayListExtra("items", (ArrayList<String>) shoppingListItems);
         this.getActivity().startService(intent);
     }
 

@@ -26,7 +26,7 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
     private boolean serviceRunning = false;
     ArrayList<String> shoppingList = new ArrayList<>();
     private final IBinder iBinder = new LocalBinder();
-    int maxItems = 5;
+    int maxItems;
     int actualItem;
 
     public class LocalBinder extends Binder{
@@ -75,8 +75,9 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
         if(!serviceRunning){
+            maxItems = intent.getIntExtra("itemCount", 0);
             actualItem = 0;
-            //shoppingList = intent.getStringArrayListExtra(EXTRA_SHOPPING);
+            shoppingList = intent.getStringArrayListExtra("items");
             Log.v(LOG_TAG, "onStartCommand()");
 
             startForeground(1, createNotification());
@@ -104,7 +105,7 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
 
         Notification notification = new NotificationCompat.Builder(this, CHANEL_ID)
                 .setContentTitle("Shopping List")
-                .setContentText("Testing " + actualItem)
+                .setContentText(shoppingList.get(actualItem))
                 .setSmallIcon(R.drawable.ic_shopping_black)
                 .setWhen(System.currentTimeMillis())
                 .addAction(R.drawable.ic_add_black, "Previous Item", pIntentPrevious)
