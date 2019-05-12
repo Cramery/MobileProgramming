@@ -55,8 +55,8 @@ public class ProfileFragment extends Fragment {
                 if (user != null){
                     Log.d(TAG, "onAuthStateChanged:signed_in: " + user.getUid());
                     saveLogin();
-                    Intent intent = new Intent(ProfileFragment.this.getActivity(), UserPage.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(ProfileFragment.this.getActivity(), UserPage.class);
+                    //startActivity(intent);
                 }else{
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
@@ -114,7 +114,6 @@ public class ProfileFragment extends Fragment {
     }
 
     public void saveLogin(){
-
         FirebaseUser user = mAuth.getCurrentUser();
         String mail = user.getEmail();
         Context mContext = getContext();

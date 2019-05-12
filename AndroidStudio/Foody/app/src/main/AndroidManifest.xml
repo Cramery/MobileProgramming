@@ -25,11 +25,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".ShoppingService.ShoppingService" />
-=======
         <service android:name=".ShoppingService.ShoppingService"/>
         <receiver android:name=".ShoppingService.ActionReceiver"/>
->>>>>>> 85944397ca6c9d78103f15fed70786c385405181
     </application>
 
 </manifest>

@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new ShoppingFragment();
                 break;
             case R.id.navigation_profile:
-                fragment = new ProfileFragment();
+                GetProfileFragment getProfileFragment = new GetProfileFragment();
+                fragment = getProfileFragment.GetProfileFragment();
+                //fragment = new ProfileFragment();
                 break;
         }
 
