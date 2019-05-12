@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,14 +74,6 @@ public class ShoppingFragment extends Fragment {
                 start_service();
             }
         });
-
-        final Button button_stop = (Button) getView().findViewById(R.id.stop_service);
-        button_stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stop_service();
-            }
-        });
     }
 
     public void SaveList(View v){
@@ -93,10 +87,5 @@ public class ShoppingFragment extends Fragment {
     public void start_service(){
         Intent intent = new Intent(this.getActivity(), ShoppingService.class);
         this.getActivity().startService(intent);
-    }
-
-    public void stop_service(){
-        Intent intent = new Intent(this.getActivity(), ShoppingService.class);
-        this.getActivity().stopService(intent);
     }
 }

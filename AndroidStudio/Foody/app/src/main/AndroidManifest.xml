@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <service android:name=".ShoppingService.ShoppingService"/>
+        <receiver android:name=".ShoppingService.ActionReceiver"/>
     </application>
 
 </manifest>
