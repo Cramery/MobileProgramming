@@ -100,21 +100,6 @@ public class ShoppingFragment extends Fragment {
             }
         });
 
-        final Button button_previous = (Button) getView().findViewById(R.id.btn_previous_item);
-        button_previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPreviousItem();
-            }
-        });
-
-        final Button button_next = (Button) getView().findViewById(R.id.btn_next_item);
-        button_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showNextItem();
-            }
-        });
     }
 
     public void SaveList(View v){

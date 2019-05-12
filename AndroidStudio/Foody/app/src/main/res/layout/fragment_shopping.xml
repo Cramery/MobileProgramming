@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_previous_item"
+        app:layout_constraintTop_toBottomOf="@+id/btn_stop_service"
         app:layout_constraintVertical_chainStyle="spread_inside"
         tools:ignore="MissingConstraints"
         tools:listitem="@layout/list_item" />
@@ -52,7 +53,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eT_NameIngredient" />
+        app:layout_constraintTop_toBottomOf="@+id/eT_NameIngredient"
+        />
 
     <EditText
         android:id="@+id/eT_AmountIngredient"
@@ -74,39 +76,23 @@
         android:id="@+id/btn_start_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Start"
+        android:layout_marginEnd="2dp"
+        android:text="Start Shopping"
+        app:layout_constraintEnd_toStartOf="@+id/btn_stop_service"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_next_item"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:text="Next"
-        app:layout_constraintStart_toEndOf="@+id/btn_previous_item"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_previous_item"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:text="Last"
-        app:layout_constraintStart_toEndOf="@+id/btn_stop_service"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_stop_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
-        android:text="Stop"
+        android:layout_marginEnd="10dp"
+        android:text="End Shopping"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_start_service"
         app:layout_constraintTop_toTopOf="parent" />
 
