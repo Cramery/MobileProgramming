@@ -18,7 +18,8 @@ public class App extends Application {
 
     private void createNotificationChannel() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel serviceChannel = new NotificationChannel(CHANEL_ID, "Shopping List Service", NotificationManager.IMPORTANCE_DEFAULT);
+            CharSequence name = getString(R.string.channel_name);
+            NotificationChannel serviceChannel = new NotificationChannel(CHANEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
 
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(serviceChannel);
