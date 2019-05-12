@@ -56,7 +56,7 @@ public class RegisterFragment extends Fragment {
         String password = eT_RPassword.getText().toString();
 
         //Register
-        
+
 
         Fragment fragment = new ProfileFragment();
 
