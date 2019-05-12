@@ -41,6 +41,10 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
             actualItem--;
         }
         Log.v("Item: ", String.valueOf(actualItem));
+        Notification repliedNotification = createNotification();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, repliedNotification);
     }
 
     @Override
@@ -49,6 +53,10 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
             actualItem++;
         }
         Log.v("Item: ", String.valueOf(actualItem));
+        Notification repliedNotification = createNotification();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, repliedNotification);
     }
 
     @Override
