@@ -115,8 +115,12 @@ public class ProfileFragment extends Fragment {
     }
 
     public void Register(View v){
-        //Registration
-        //To Do
+        Fragment fragment = new RegisterFragment();
+
+        getFragmentManager().
+                beginTransaction().
+                replace(R.id.fragment_container, fragment).
+                commit();
     }
 
     public void saveLogin(){
