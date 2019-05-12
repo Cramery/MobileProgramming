@@ -54,23 +54,6 @@ public class ShoppingListRepository {
         }
     }
 
-    /*
-    private static class ShowListAsyncTask extends AsyncTask<ShoppingList, Void, Void>{
-        private ShoppingListDao dao;
-        private String list;
-
-        private ShowListAsyncTask(ShoppingListDao dao, String list){
-            this.dao = dao;
-            this.list = list;
-        }
-
-        @Override
-        protected List<ShoppingList> doInBackground(Void... voids) {
-            return dao.showList(this.list);
-        }
-    }
-    */
-
     private static class UpdateShoppedAsyncTask extends AsyncTask<Void, Void, Void>{
         private ShoppingListDao dao;
         private String list;

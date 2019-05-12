@@ -96,12 +96,12 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
         Intent intentActionNext = new Intent(this,ActionReceiver.class);
         //This is optional if you have more than one buttons and want to differentiate between two
         intentActionNext.putExtra("action","next");
-        PendingIntent pIntentNext = PendingIntent.getBroadcast(this,1,intentActionNext,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pIntentNext = PendingIntent.getBroadcast(this,2,intentActionNext,PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent intentActionEnd = new Intent(this,ActionReceiver.class);
         //This is optional if you have more than one buttons and want to differentiate between two
         intentActionEnd.putExtra("action","end");
-        PendingIntent pIntentEnd = PendingIntent.getBroadcast(this,1,intentActionEnd,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pIntentEnd = PendingIntent.getBroadcast(this,3,intentActionEnd,PendingIntent.FLAG_UPDATE_CURRENT);
 
         Notification notification = new NotificationCompat.Builder(this, CHANEL_ID)
                 .setContentTitle("Shopping List")

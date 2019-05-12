@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.mobpro.foody.Database.ShoppingList;
 import com.mobpro.foody.Database.ShoppingListAdapter;
 import com.mobpro.foody.Database.ShoppingListViewModel;
+import com.mobpro.foody.ShoppingService.ActionReceiver;
 import com.mobpro.foody.ShoppingService.ShoppingService;
 import com.mobpro.foody.ShoppingService.ShoppingServiceApi;
 
@@ -135,6 +136,7 @@ public class ShoppingFragment extends Fragment {
         intent.putExtra("itemCount", itemCount);
         intent.putStringArrayListExtra("items", (ArrayList<String>) shoppingListItems);
         this.getActivity().startService(intent);
+        ActionReceiver.setService(myService);
     }
 
     public void stop_service(){
