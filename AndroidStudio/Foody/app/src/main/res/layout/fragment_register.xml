@@ -8,7 +8,7 @@
 
 
     <EditText
-        android:id="@+id/eT_RUsername"
+        android:id="@+id/eT_REmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -33,7 +33,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eT_RUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/eT_REmail" />
 
     <Button
         android:id="@+id/btn_Register"
