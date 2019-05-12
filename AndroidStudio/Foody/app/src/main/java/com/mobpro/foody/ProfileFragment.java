@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -53,6 +54,7 @@ public class ProfileFragment extends Fragment {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
                     Log.d(TAG, "onAuthStateChanged:signed_in: " + user.getUid());
+                    saveLogin();
                     Intent intent = new Intent(ProfileFragment.this.getActivity(), UserPage.class);
                     startActivity(intent);
                 }else{
@@ -101,7 +103,7 @@ public class ProfileFragment extends Fragment {
         if(!email.equals("") && !password.equals("")){
             mAuth.signInWithEmailAndPassword(email, password);
             //Save mAuth to SharedPreferences
-            saveLogin();
+
         }else{
             Toast.makeText(getContext(), "Pls. enter all fields", Toast.LENGTH_LONG).show();
         }
@@ -112,13 +114,15 @@ public class ProfileFragment extends Fragment {
     }
 
     public void saveLogin(){
-        Context mContext = getContext();
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         FirebaseUser user = mAuth.getCurrentUser();
         String mail = user.getEmail();
-        Toast.makeText(getContext(), mail, Toast.LENGTH_LONG).show();
+        Context mContext = getContext();
+
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         editor.putString(TEXT, mail);
+        editor.commit();
     }
 }

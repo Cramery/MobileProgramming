@@ -25,6 +25,5 @@ public class UserPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
         email = sharedPreferences.getString(TEXT, "");
         Toast.makeText(getApplicationContext(), email, Toast.LENGTH_LONG).show();
-
     }
 }
