@@ -7,12 +7,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,6 +47,23 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+        TextView tV_RLogin = (TextView) getView().findViewById(R.id.tV_RLogin);
+        tV_RLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Login(v);
+            }
+        });
+
+    }
+
+    public void Login(View v){
+        Fragment fragment = new ProfileFragment();
+
+        getFragmentManager().
+                beginTransaction().
+                replace(R.id.fragment_container, fragment).
+                commit();
     }
 
     public void Register(View v){
@@ -56,14 +75,46 @@ public class RegisterFragment extends Fragment {
         String password = eT_RPassword.getText().toString();
 
         //Register
+        if (email.isEmpty()){
+            eT_REmail.setError("Email is Required");
+            eT_REmail.requestFocus();
+            return;
+        }
 
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            eT_REmail.setError("Please enter a valid email");
+            eT_REmail.requestFocus();
+            return;
+        }
 
-        Fragment fragment = new ProfileFragment();
+        if (password.isEmpty()){
+            eT_RPassword.setError("Password is Required");
+            eT_RPassword.requestFocus();
+            return;
+        }
 
-        getFragmentManager().
-                beginTransaction().
-                replace(R.id.fragment_container, fragment).
-                commit();
+        if(password.length() < 6){
+            eT_RPassword.setError("Minimum length of password is 6");
+            eT_RPassword.requestFocus();
+            return;
+        }
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.createUserWithEmailAndPassword(email, password).
+                addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                      @Override
+                      public void onComplete(@NonNull Task<AuthResult> task) {
+                          if(task.isSuccessful()){
+                              Fragment fragment = new UserFragment();
+
+                              getFragmentManager().
+                                      beginTransaction().
+                                      replace(R.id.fragment_container, fragment).
+                                      commit();
+                          }
+                      }
+                  }
+                );
     }
 
 

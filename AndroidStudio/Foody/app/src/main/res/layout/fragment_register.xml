@@ -16,7 +16,7 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="E-Mail"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="Passwort"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eT_REmail" />
@@ -46,4 +46,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eT_RPassword" />
+
+    <TextView
+        android:id="@+id/tV_HaveAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Already have an account?"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Register" />
+
+    <TextView
+        android:id="@+id/tV_RLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:text="Log in"
+        android:textColor="#0000FF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tV_HaveAcc"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Register" />
 </android.support.constraint.ConstraintLayout>
