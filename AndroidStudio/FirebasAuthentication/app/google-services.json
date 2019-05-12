@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "393831815210",
+    "firebase_url": "https://firebasauthentication-f24fa.firebaseio.com",
+    "project_id": "firebasauthentication-f24fa",
+    "storage_bucket": "firebasauthentication-f24fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393831815210:android:c2a3480fd71506ad",
+        "android_client_info": {
+          "package_name": "com.mobpro.firebasauthentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393831815210-629c66e4p814g0fiqlrup8j1p4d9brr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobpro.firebasauthentication",
+            "certificate_hash": "36b7845b93c464f77a061eac720916a29ef28e3b"
+          }
+        },
+        {
+          "client_id": "393831815210-9beu46tloc3m82f23pkgafhcg3iu1n0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLy9fN8FDtjOoMmrUmFhv1mmKWGRkiTmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393831815210-9beu46tloc3m82f23pkgafhcg3iu1n0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
