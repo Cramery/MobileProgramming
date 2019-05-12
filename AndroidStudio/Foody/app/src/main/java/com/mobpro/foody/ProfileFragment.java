@@ -32,8 +32,7 @@ public class ProfileFragment extends Fragment {
     private EditText eT_Email, eT_Password;
 
     public static final String SHARED_PREFERENCES = "sharedPrefLogin";
-    public static final String TEXT = "text";
-    public static final String SWITCH1 = "switch1";
+    public static final String TEXT = "email";
 
     @Nullable
     @Override
@@ -119,6 +118,7 @@ public class ProfileFragment extends Fragment {
 
         FirebaseUser user = mAuth.getCurrentUser();
         String mail = user.getEmail();
+        Toast.makeText(getContext(), mail, Toast.LENGTH_LONG).show();
         editor.putString(TEXT, mail);
     }
 }
