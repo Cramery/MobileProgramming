@@ -26,29 +26,37 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
     private boolean serviceRunning = false;
     ArrayList<String> shoppingList = new ArrayList<>();
     private final IBinder iBinder = new LocalBinder();
-    int maxItems;
+    int maxItems = 5;
     int actualItem;
 
     public class LocalBinder extends Binder{
-        ShoppingService getService(){
+        public ShoppingService getService(){
             return ShoppingService.this;
         }
     }
 
     @Override
-    public String showPreviousItem() {
+    public void showPreviousItem() {
         if(actualItem > 0){
             actualItem--;
         }
-        return null;
+        Log.v("Item: ", String.valueOf(actualItem));
     }
 
     @Override
-    public String showNextItem() {
+    public void showNextItem() {
         if(actualItem < maxItems-1){
             actualItem++;
         }
-        return null;
+        Log.v("Item: ", String.valueOf(actualItem));
+    }
+
+    @Override
+    public void stopShopping() {
+        if(serviceRunning){
+            serviceRunning = false;
+        }
+        stopForeground(true);
     }
 
     @Override
@@ -71,6 +79,16 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
     }
 
     private Notification createNotification() {
+        Intent intentActionPrevious = new Intent(this,ActionReceiver.class);
+        //This is optional if you have more than one buttons and want to differentiate between two
+        intentActionPrevious.putExtra("action","previous");
+        PendingIntent pIntentPrevious = PendingIntent.getBroadcast(this,1,intentActionPrevious,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent intentActionNext = new Intent(this,ActionReceiver.class);
+        //This is optional if you have more than one buttons and want to differentiate between two
+        intentActionNext.putExtra("action","next");
+        PendingIntent pIntentNext = PendingIntent.getBroadcast(this,1,intentActionNext,PendingIntent.FLAG_UPDATE_CURRENT);
+
         Intent intentActionEnd = new Intent(this,ActionReceiver.class);
         //This is optional if you have more than one buttons and want to differentiate between two
         intentActionEnd.putExtra("action","end");
@@ -81,6 +99,8 @@ public class ShoppingService extends Service implements ShoppingServiceApi {
                 .setContentText("Testing " + actualItem)
                 .setSmallIcon(R.drawable.ic_shopping_black)
                 .setWhen(System.currentTimeMillis())
+                .addAction(R.drawable.ic_add_black, "Previous Item", pIntentPrevious)
+                .addAction(R.drawable.ic_add_black, "Next Item", pIntentNext)
                 .addAction(R.drawable.ic_add_black, "End Shopping", pIntentEnd)
                 .build();
         return notification;

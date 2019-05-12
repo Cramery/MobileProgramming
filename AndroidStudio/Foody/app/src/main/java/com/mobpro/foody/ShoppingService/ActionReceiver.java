@@ -9,8 +9,6 @@ public class ActionReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        //Toast.makeText(context,"recieved",Toast.LENGTH_SHORT).show();
-
         String action=intent.getStringExtra("action");
         if(action.equals("end")){
             stop_service(context);

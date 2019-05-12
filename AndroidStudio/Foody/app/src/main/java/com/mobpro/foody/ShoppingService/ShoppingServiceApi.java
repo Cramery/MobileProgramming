@@ -2,7 +2,8 @@ package com.mobpro.foody.ShoppingService;
 
 import java.util.List;
 
-interface ShoppingServiceApi {
-    String showPreviousItem();
-    String showNextItem();
+public interface ShoppingServiceApi {
+    void showPreviousItem();
+    void showNextItem();
+    void stopShopping();
 }
