@@ -102,15 +102,21 @@ public class ProfileFragment extends Fragment {
         String password = eT_Password.getText().toString();
         if(!email.equals("") && !password.equals("")){
             mAuth.signInWithEmailAndPassword(email, password);
-            //Save mAuth to SharedPreferences
 
+            Fragment fragment = new UserFragment();
+
+            getFragmentManager().
+                    beginTransaction().
+                    replace(R.id.fragment_container, fragment).
+                    commit();
         }else{
             Toast.makeText(getContext(), "Pls. enter all fields", Toast.LENGTH_LONG).show();
         }
     }
 
     public void Register(View v){
-        mAuth.signOut();
+        //Registration
+        //To Do
     }
 
     public void saveLogin(){

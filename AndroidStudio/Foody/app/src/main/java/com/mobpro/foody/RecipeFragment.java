@@ -39,6 +39,7 @@ public class RecipeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
         final Button button = (Button) getView().findViewById(R.id.btn_saveRecipe);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
